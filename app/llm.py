@@ -721,11 +721,13 @@ class LLM:
             params = {
                 "model": self.model,
                 "messages": messages,
-                "tools": tools,
-                "tool_choice": tool_choice,
                 "timeout": timeout,
                 **kwargs,
             }
+            # no tools for local llm
+            if self.api_type != "ollama":
+                params["tools"] = tools
+                params["tool_choice"] = tool_choice
 
             if self.model in REASONING_MODELS:
                 params["max_completion_tokens"] = self.max_tokens
