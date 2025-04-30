@@ -130,7 +130,7 @@ def extract_last_token_total_from_logs():
 
 
 async def main():
-    for i in range(1, 11):
+    for i in range(1, 301):
         await handle_task(i)
 
 
